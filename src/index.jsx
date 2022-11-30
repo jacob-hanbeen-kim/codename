@@ -7,6 +7,8 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { GlobalStyles } from './index.styled';
 import { theme } from './theme/Theme';
 import { ThemeProvider } from 'styled-components';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,7 +16,9 @@ root.render(
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <Router basename={process.env.PUBLIC_URL}>
-        <App />
+        <GoogleOAuthProvider clientId={process.env.REACT_APP_CLIENT_ID}>
+          <App />
+        </GoogleOAuthProvider>
       </Router >
     </ThemeProvider>
   </React.StrictMode>

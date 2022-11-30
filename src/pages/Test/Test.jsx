@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import Button from '../../components/Button/Button';
-import { apiService } from '../../services/api';
 import Sidebar from './Sidebar/Sidebar';
+import Request from './Request/Request';
 import {
     Container,
     Wrapper,
@@ -9,21 +7,7 @@ import {
     Content
 } from './Test.styled';
 
-let data = require('./data.json');
-
 const Test = () => {
-
-    let [req, setReq] = useState();
-
-    const handleSubmitRequest = () => {
-        apiService.sendRequest(req).then((res) => {
-            console.log(res);
-        });
-    }
-
-    useEffect(() => {
-        setReq(data);
-    }, [])
 
     return (
         <Container>
@@ -32,7 +16,7 @@ const Test = () => {
                     <Sidebar />
                 </SidebarContainer>
                 <Content>
-                    <Button onClick={handleSubmitRequest} />
+                    <Request />
                 </Content>
             </Wrapper>
         </Container>

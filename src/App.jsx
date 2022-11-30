@@ -8,6 +8,7 @@ import {
 import Navbar from './components/Navbar/Navbar';
 import Home from './pages/Home/Home';
 import Test from './pages/Test/Test';
+import Login from './pages/Login/Login';
 
 function App() {
   const location = useLocation();
@@ -19,6 +20,7 @@ function App() {
         <Routes location={location}>
           <Route path="/" element={<Home />} />
           <Route path="/test" element={<Test />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/*" element={<div>404 Page Not Found</div>} />
         </Routes>
       </PageWrapper>

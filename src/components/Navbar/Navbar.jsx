@@ -46,6 +46,7 @@ const Navbar = () => {
                     <Nav isVisible={isOpen} onClick={() => { isOpen && handleMenuBar() }}>
                         <StyledNavLink to="/">Home</StyledNavLink>
                         <StyledNavLink to="/test">Test</StyledNavLink>
+                        <StyledNavLink to="/login">SignIn</StyledNavLink>
                     </Nav>
                 </NavContainer>
                 <MenuContainer>
