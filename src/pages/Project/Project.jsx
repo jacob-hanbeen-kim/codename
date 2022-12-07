@@ -5,9 +5,9 @@ import {
     Wrapper,
     SidebarContainer,
     Content
-} from './Test.styled';
+} from './Project.styled';
 
-const Test = () => {
+const Project = () => {
 
     return (
         <Container>
@@ -23,4 +23,4 @@ const Test = () => {
     )
 }
 
-export default Test
+export default Project

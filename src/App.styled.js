@@ -14,5 +14,4 @@ export const PageWrapper = styled.div`
     justify-content: flex-start;
     align-items: center;
     width: 100vw;
-    margin-top: 10px;
 `
