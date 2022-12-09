@@ -1,18 +1,36 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import {
     Container,
     Wrapper
 } from './Sidebar.styled';
 
-const Sidebar = () => {
+import { connect } from 'react-redux';
+import { fetchUser } from '../../../actions';
+
+const Sidebar = (props) => {
+
+    useEffect(() => {
+        props.fetchUser(1);
+    }, [])
+
     return (
         <Container>
             <Wrapper>
-                hi
+                {props.users.map((user, idx) => {
+                    return (
+                        <div key={idx}>
+                            {user.name}
+                        </div>
+                    )
+                })}
             </Wrapper>
         </Container>
     )
 }
 
-export default Sidebar
+const mapStateToProps = (state) => {
+    return { users: state.users }
+}
+
+export default connect(mapStateToProps, { fetchUser })(Sidebar);
