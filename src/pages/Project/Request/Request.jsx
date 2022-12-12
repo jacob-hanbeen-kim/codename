@@ -34,23 +34,25 @@ const httpRequest = [
 
 const Request = () => {
 
+    let [method, setMethod] = useState(null);
+    let [url, setUrl] = useState(null);
+    let [queryParams, setQueryParams] = useState([]);
+    let [headers, setHeaders] = useState([]);
+    let [requestBody, setRequestBody] = useState([]);
     let [testData, setTestData] = useState([]);
-    let [request, setRequest] = useState({
-        url: "",
-        method: "get",
-        body: "",
-        header: ""
-    });
-    let [response, setResponse] = useState("");
+    let [assert, setAssert] = useState([]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        let req = {}
-        for (var attr in request) {
-            if (request[attr] !== "") {
-                req[attr] = request[attr];
-            }
+        let req = {
+            url,
+            method,
+            headers,
+            queryParams,
+            requestBody,
+            testData,
+            assert
         }
 
         console.log(req);
@@ -59,18 +61,6 @@ const Request = () => {
         //     console.log(res);
         //     setResponse(res);
         // });
-    }
-
-    const handleOnChange = (e) => {
-        setRequest({ ...request, [e.target.name]: e.target.value });
-        // console.log(request);
-    }
-
-    const handleTestData = (e) => {
-        setTestData(e.target.value);
-        // if (IsJsonString(val)) {
-        //     JSON.stringify(JSON.parse(e.target.value), null, 4);
-        // }
     }
 
     return (
@@ -88,11 +78,11 @@ const Request = () => {
                             required={true}
                             options={httpRequest}
                             defaultValue={'get'}
-                            onChange={handleOnChange}
+                            onChange={(e) => setMethod(e.target.value)}
                         />
                     </Col>
                     <Col flex={8}>
-                        <Url type='text' name='url' onChange={handleOnChange} placeholder='Enter request URL' />
+                        <Url type='text' name='url' onChange={(e) => setUrl(e.target.value)} placeholder='Enter request URL' />
                     </Col>
                 </Row>
                 <Row flex={6} align={'flex-start'}>
@@ -100,38 +90,39 @@ const Request = () => {
                         <textarea value={JSON.stringify(response, null, 4)} readOnly rows='20' cols='30' />
                     </Col> */}
                     <Tabs align={'left'}>
-                        <DataTable label="Params" headers={[
-                            { key: "key", label: "Key" },
-                            { key: "value", label: "Value" },
-                            { key: "description", label: "Description" }
-                        ]} />
-                        <DataTable label="Headers" headers={[
-                            { key: "key", label: "Key" },
-                            { key: "value", label: "Value" },
-                            { key: "description", label: "Description" }
-                        ]} />
+                        <DataTable label="Params" data={queryParams} setData={setQueryParams}
+                            headers={[
+                                { key: "key", label: "Key" },
+                                { key: "value", label: "Value" },
+                                { key: "description", label: "Description" }
+                            ]} />
+                        <DataTable label="Headers" data={headers} setData={setHeaders}
+                            headers={[
+                                { key: "key", label: "Key" },
+                                { key: "value", label: "Value" },
+                                { key: "description", label: "Description" }
+                            ]} />
                         <div label="Body">
                             <textarea>
 
                             </textarea>
                         </div>
-                        <DataTable label="TestData" headers={[
-                            { key: "key", label: "Key" },
-                            { key: "value", label: "Value" }
-                        ]} />
+                        <DataTable label="TestData" data={testData} setData={setTestData}
+                            headers={[
+                                { key: "key", label: "Key" },
+                                { key: "value", label: "Value" }
+                            ]} />
                     </Tabs>
                 </Row>
                 <HorizontalLine />
                 <Row flex={6} align={'flex-start'}>
                     <Tabs align={'left'}>
-                        <DataTable
-                            label="Assert"
+                        <DataTable label="Assert" data={assert} setData={setAssert}
                             headers={[
                                 { key: "key", label: "Key" },
                                 { key: "value", label: "Value" },
                                 { key: "path", label: "Path" }
-                            ]}
-                        />
+                            ]} />
                     </Tabs>
                 </Row>
                 <HorizontalLine />

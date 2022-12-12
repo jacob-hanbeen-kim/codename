@@ -4,7 +4,7 @@ import {
     Container,
     Wrapper,
     Button
-} from './Actioin.styled';
+} from './Action.styled';
 
 const Action = () => {
 

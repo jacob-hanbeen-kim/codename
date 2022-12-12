@@ -5,8 +5,8 @@ const sendRequest = (rq) => {
         headers: rq.headers
     }
 
-    if (rq.body) {
-        config['body'] = rq.body;
+    if (rq.requestBody) {
+        config['body'] = rq.requestBody;
     }
 
 

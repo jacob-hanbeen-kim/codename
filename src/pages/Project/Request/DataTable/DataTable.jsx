@@ -6,9 +6,8 @@ import {
 import { useEffect, useState } from 'react';
 import Table from '../../../../components/Table/Table';
 
-const DataTable = ({ headers }) => {
+const DataTable = ({ headers, data, setData }) => {
 
-    let [data, setData] = useState([]);
     let [placeHolder, setPlaceholder] = useState(null);
 
     const handleDataChange = (e, idx) => {
@@ -53,10 +52,6 @@ const DataTable = ({ headers }) => {
         })
         setPlaceholder(initData);
     }, [])
-
-    useEffect(() => {
-        console.log(data);
-    }, [data])
 
     return (
         <Contaiiner>
