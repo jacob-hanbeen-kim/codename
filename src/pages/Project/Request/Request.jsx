@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { apiService } from '../../../services/api';
 import {
     Container,
@@ -34,11 +35,13 @@ const httpRequest = [
 
 const Request = () => {
 
-    let [method, setMethod] = useState(null);
+    let navigate = useNavigate();
+
+    let [method, setMethod] = useState('get');
     let [url, setUrl] = useState(null);
     let [queryParams, setQueryParams] = useState([]);
     let [headers, setHeaders] = useState([]);
-    let [requestBody, setRequestBody] = useState([]);
+    let [requestBody, setRequestBody] = useState(null);
     let [testData, setTestData] = useState([]);
     let [assert, setAssert] = useState([]);
 
@@ -57,10 +60,10 @@ const Request = () => {
 
         console.log(req);
 
-        // apiService.sendRequest(req).then((res) => {
-        //     console.log(res);
-        //     setResponse(res);
-        // });
+        apiService.sendRequest(req).then((res) => {
+            console.log(res);
+            navigate('/project/execution', { state: { response: res } });
+        });
     }
 
     return (

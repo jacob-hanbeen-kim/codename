@@ -5,6 +5,8 @@ import {
     Wrapper
 } from './Sidebar.styled';
 
+import Toolbar from './Toolbar/Toolbar';
+
 import { connect } from 'react-redux';
 import { fetchUser } from '../../../actions';
 
@@ -17,6 +19,7 @@ const Sidebar = (props) => {
     return (
         <Container>
             <Wrapper>
+                <Toolbar />
                 {props.users.map((user, idx) => {
                     return (
                         <div key={idx}>
