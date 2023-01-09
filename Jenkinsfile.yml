@@ -1,7 +1,5 @@
 pipeline:
-  agent: 
-    any:
   stages:
-    - stage: "Hello"
+    - stage: "Stage1"
       steps:
-        - echo "Hello World"
+        - echo "1"
