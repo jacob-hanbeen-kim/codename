@@ -7,5 +7,10 @@ pipeline {
         echo 'Hello World'
       }
     }
+    stage('Install Dependencies') {
+      steps {
+        npm install
+      }
+    }
   }
 }
