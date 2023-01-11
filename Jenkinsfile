@@ -3,7 +3,7 @@ pipeline {
   
   stages {
     stage('build docker image') {
-      script {
+      steps {
         sh 'docker build -t beesoo/cpcpro-fe-hub .'
       }
     }
