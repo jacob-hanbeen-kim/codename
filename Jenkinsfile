@@ -2,11 +2,6 @@ pipeline {
   agent any
 
   stages {
-    stage('Install dependencies') {
-      steps {
-        sh 'yarn install'
-      }
-    }
     stage('Build') {
       steps {
           sh 'docker build -t $DOCKERHUB_FOR_FE:dev -f ./Dockerfile .'
