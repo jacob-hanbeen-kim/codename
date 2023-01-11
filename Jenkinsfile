@@ -1,11 +1,41 @@
 pipeline {
-  agent any
   
+  agent any
+
   stages {
-    stage('build docker image') {
+    stage("Install dependencies") {
       steps {
-        sh 'docker build -t beesoo/cpcpro-fe-hub .'
+        sh 'yarn install'
       }
+    }
+    stage("Build") {
+      steps {
+          sh 'docker build -t $DOCKERHUB_FOR_FE:dev -f ./Dockerfile .'
+      }
+    }
+
+    stage('Login') {
+			steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
+		}
+
+    stage("Push") {
+      steps {
+      sh 'docker push $DOCKERHUB_FOR_FE:dev'
+      }
+    }
+
+    stage("Clean") {
+      steps {
+				sh 'docker rmi $DOCKERHUB_FOR_FE:dev'
+			}
+    }
+
+    stage("Release") {
+      steps {
+        build job: 'FrontEnd', propagate: true, wait: true
+			}
     }
   }
 }
