@@ -3,4 +3,4 @@ services:
     image: beesoo/cpcpro-fe-hub:dev
     container_name: frontend-dev
     ports:
-      - "3001:3000"
+      - "3001:80"

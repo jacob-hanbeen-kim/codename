@@ -1,5 +1,5 @@
 pipeline {
-  
+
   agent any
 
   stages {
@@ -33,9 +33,12 @@ pipeline {
     }
 
     stage("Release") {
-      steps {
-        build job: 'FrontEnd', propagate: true, wait: true
-			}
+        steps {
+            sh script: """\
+            docker-compose down --rmi all -v --remove-orphans
+            docker-compose up -d
+            """, returnStdout: true
+        }
     }
   }
 }
