@@ -108,8 +108,9 @@ const Request = () => {
                         <DataTable label="Assert" data={assert} setData={setAssert}
                             headers={[
                                 { key: "key", label: "Key" },
+                                { key: "operation", label: "Operation" },
                                 { key: "value", label: "Value" },
-                                { key: "path", label: "Path" }
+                                { key: "type", label: "Data Type" }
                             ]} />
                     </Tabs>
                 </Row>

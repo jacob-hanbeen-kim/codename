@@ -27,6 +27,7 @@ const Execution = () => {
     const [isComplete, setComplete] = useState(true);
     const [testResult, setTestResult] = useState({});
 
+
     let assert = (key, value) => {
         setTestResult(prevState => ({ ...prevState, [key]: TestStatus.pending }))
         if (location.state.response[key] === value) {
@@ -47,7 +48,8 @@ const Execution = () => {
     }
 
     useEffect(() => {
-        location.state.assert.forEach((a) => {
+        console.log(location.state)
+        location.state?.assert?.forEach((a) => {
             assert(a.key, a.value);
         })
     }, [])
@@ -61,11 +63,12 @@ const Execution = () => {
             <Wrapper>
                 <h3>Test Execution Result</h3>
                 <TestContainer>
-                    {location.state.assert.map((a) => {
+                    {Object.keys(testResult).map((key) => {
+                        console.log(testResult)
                         return (
-                            <TestCase key={a.key}>
-                                <StatusContainer>{getStatus(a.key)}</StatusContainer>
-                                <TestTitle>{a.key}</TestTitle>
+                            <TestCase key={key}>
+                                <StatusContainer>{getStatus(key)}</StatusContainer>
+                                <TestTitle>{key}</TestTitle>
                             </TestCase>
                         )
                     })}
