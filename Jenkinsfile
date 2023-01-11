@@ -2,14 +2,9 @@ pipeline {
   agent any
   
   stages {
-    stage('Hello') {
-      steps {
-        echo 'Hello World'
-      }
-    }
-    stage('Install Dependencies') {
-      steps {
-        npm install
+    stage('build docker image') {
+      script {
+        sh 'docker build -t beesoo/cpcpro-fe-hub .'
       }
     }
   }
