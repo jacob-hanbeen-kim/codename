@@ -26,12 +26,6 @@ pipeline {
       }
     }
 
-    stage("Clean") {
-      steps {
-				sh 'docker rmi $DOCKERHUB_FOR_FE:dev'
-			}
-    }
-
     stage("Release") {
         steps {
             sh script: """\
@@ -40,5 +34,12 @@ pipeline {
             """, returnStdout: true
         }
     }
+    
+    stage("Clean") {
+      steps {
+				sh 'echo y | docker image prune -a'
+			}
+    }
+    
   }
 }
