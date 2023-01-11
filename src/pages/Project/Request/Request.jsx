@@ -16,15 +16,7 @@ import Dropdown from '../../../components/Dropdown/Dropdown';
 import Tabs from '../../../components/Tabs/Tabs';
 import DataTable from './DataTable/DataTable';
 import Action from './Action/Action';
-
-function IsJsonString(str) {
-    try {
-        var json = JSON.parse(str);
-        return (typeof json === 'object');
-    } catch (e) {
-        return false;
-    }
-}
+import RequestBody from './RequestBody/RequestBody';
 
 const httpRequest = [
     { label: 'GET', value: 'get' },
@@ -62,7 +54,7 @@ const Request = () => {
 
         apiService.sendRequest(req).then((res) => {
             console.log(res);
-            navigate('/project/execution', { state: { response: res } });
+            navigate('/project/execution', { state: { response: res, assert } });
         });
     }
 
@@ -89,9 +81,6 @@ const Request = () => {
                     </Col>
                 </Row>
                 <Row flex={6} align={'flex-start'}>
-                    {/* <Col>
-                        <textarea value={JSON.stringify(response, null, 4)} readOnly rows='20' cols='30' />
-                    </Col> */}
                     <Tabs align={'left'}>
                         <DataTable label="Params" data={queryParams} setData={setQueryParams}
                             headers={[
@@ -105,11 +94,7 @@ const Request = () => {
                                 { key: "value", label: "Value" },
                                 { key: "description", label: "Description" }
                             ]} />
-                        <div label="Body">
-                            <textarea>
-
-                            </textarea>
-                        </div>
+                        <RequestBody label="Body" data={requestBody} setData={setRequestBody} />
                         <DataTable label="TestData" data={testData} setData={setTestData}
                             headers={[
                                 { key: "key", label: "Key" },
@@ -134,11 +119,6 @@ const Request = () => {
                         <Action />
                     </Col>
                 </Row>
-                {/* <Row flex={2} >
-                    <Col>
-                        <textarea value={testData} onChange={handleTestData} rows='8' cols='30' />
-                    </Col>
-                </Row> */}
             </Form>
         </Container >
     )
