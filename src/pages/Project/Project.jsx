@@ -1,11 +1,12 @@
-import Sidebar from './Sidebar/Sidebar';
-import Request from './Request/Request';
 import {
     Container,
     Wrapper,
     SidebarContainer,
     Content
 } from './Project.styled';
+
+import { Outlet } from 'react-router-dom';
+import Sidebar from './Sidebar/Sidebar';
 
 const Project = () => {
 
@@ -16,7 +17,7 @@ const Project = () => {
                     <Sidebar />
                 </SidebarContainer>
                 <Content>
-                    <Request />
+                    <Outlet />
                 </Content>
             </Wrapper>
         </Container>

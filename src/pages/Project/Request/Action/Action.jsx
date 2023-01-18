@@ -34,15 +34,15 @@ const Action = () => {
                 <>
                     <Wrapper>
                         <Dropdown
-                            name="method"
+                            name="env"
                             required={true}
                             options={Object.keys(environments)}
-                            defaultValue={'get'}
+                            defaultValue={'qa'}
                             onChange={(e) => { console.log(e.target.value) }}
                         />
                     </Wrapper>
                     <Wrapper>
-                        <Button>Save</Button>
+                        <Button type='button'>Save</Button>
                         <Button type='submit'>Run Test</Button>
                     </Wrapper>
                 </>

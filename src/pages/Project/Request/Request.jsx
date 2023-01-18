@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { apiService } from '../../../services/api';
 import {
     Container,
@@ -15,15 +16,7 @@ import Dropdown from '../../../components/Dropdown/Dropdown';
 import Tabs from '../../../components/Tabs/Tabs';
 import DataTable from './DataTable/DataTable';
 import Action from './Action/Action';
-
-function IsJsonString(str) {
-    try {
-        var json = JSON.parse(str);
-        return (typeof json === 'object');
-    } catch (e) {
-        return false;
-    }
-}
+import RequestBody from './RequestBody/RequestBody';
 
 const httpRequest = [
     { label: 'GET', value: 'get' },
@@ -34,11 +27,13 @@ const httpRequest = [
 
 const Request = () => {
 
-    let [method, setMethod] = useState(null);
+    let navigate = useNavigate();
+
+    let [method, setMethod] = useState('get');
     let [url, setUrl] = useState(null);
     let [queryParams, setQueryParams] = useState([]);
     let [headers, setHeaders] = useState([]);
-    let [requestBody, setRequestBody] = useState([]);
+    let [requestBody, setRequestBody] = useState(null);
     let [testData, setTestData] = useState([]);
     let [assert, setAssert] = useState([]);
 
@@ -57,10 +52,10 @@ const Request = () => {
 
         console.log(req);
 
-        // apiService.sendRequest(req).then((res) => {
-        //     console.log(res);
-        //     setResponse(res);
-        // });
+        apiService.sendRequest(req).then((res) => {
+            console.log(res);
+            navigate('/project/execution', { state: { response: res, assert } });
+        });
     }
 
     return (
@@ -86,9 +81,6 @@ const Request = () => {
                     </Col>
                 </Row>
                 <Row flex={6} align={'flex-start'}>
-                    {/* <Col>
-                        <textarea value={JSON.stringify(response, null, 4)} readOnly rows='20' cols='30' />
-                    </Col> */}
                     <Tabs align={'left'}>
                         <DataTable label="Params" data={queryParams} setData={setQueryParams}
                             headers={[
@@ -102,11 +94,7 @@ const Request = () => {
                                 { key: "value", label: "Value" },
                                 { key: "description", label: "Description" }
                             ]} />
-                        <div label="Body">
-                            <textarea>
-
-                            </textarea>
-                        </div>
+                        <RequestBody label="Body" data={requestBody} setData={setRequestBody} />
                         <DataTable label="TestData" data={testData} setData={setTestData}
                             headers={[
                                 { key: "key", label: "Key" },
@@ -120,8 +108,9 @@ const Request = () => {
                         <DataTable label="Assert" data={assert} setData={setAssert}
                             headers={[
                                 { key: "key", label: "Key" },
+                                { key: "operation", label: "Operation" },
                                 { key: "value", label: "Value" },
-                                { key: "path", label: "Path" }
+                                { key: "type", label: "Data Type" }
                             ]} />
                     </Tabs>
                 </Row>
@@ -131,11 +120,6 @@ const Request = () => {
                         <Action />
                     </Col>
                 </Row>
-                {/* <Row flex={2} >
-                    <Col>
-                        <textarea value={testData} onChange={handleTestData} rows='8' cols='30' />
-                    </Col>
-                </Row> */}
             </Form>
         </Container >
     )
