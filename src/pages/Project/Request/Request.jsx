@@ -107,10 +107,10 @@ const Request = () => {
                     <Tabs align={'left'}>
                         <DataTable label="Assert" data={assert} setData={setAssert}
                             headers={[
-                                { key: "key", label: "Key" },
+                                { key: "path", label: "Path" },
                                 { key: "operation", label: "Operation" },
-                                { key: "value", label: "Value" },
-                                { key: "type", label: "Data Type" }
+                                { key: "expected", label: "Expected" },
+                                { key: "dataType", label: "Data Type" }
                             ]} />
                     </Tabs>
                 </Row>
