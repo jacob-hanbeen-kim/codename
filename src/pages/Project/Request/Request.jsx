@@ -17,6 +17,8 @@ import Tabs from '../../../components/Tabs/Tabs';
 import DataTable from './DataTable/DataTable';
 import Action from './Action/Action';
 import RequestBody from './RequestBody/RequestBody';
+import { AssertOperators } from './AssertOperators';
+import { DataType } from './DataType';
 
 const httpRequest = [
     { label: 'GET', value: 'get' },
@@ -31,7 +33,7 @@ const Request = () => {
 
     let [method, setMethod] = useState('get');
     let [url, setUrl] = useState(null);
-    let [queryParams, setQueryParams] = useState([]);
+    let [queryParameters, setQueryParameters] = useState([]);
     let [headers, setHeaders] = useState([]);
     let [requestBody, setRequestBody] = useState(null);
     let [testData, setTestData] = useState([]);
@@ -40,21 +42,25 @@ const Request = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        let req = {
+        // console.log('body', {
+        //     testData,
+        //     assert,
+        //     url,
+        //     headers,
+        //     method,
+        //     requestBody,
+        //     queryParameters
+        // });
+
+        apiService.sendRequest({
             url,
-            method,
             headers,
-            queryParams,
+            method,
             requestBody,
-            testData,
-            assert
-        }
-
-        console.log(req);
-
-        apiService.sendRequest(req).then((res) => {
+            queryParameters
+        }).then((res) => {
             console.log(res);
-            navigate('/project/execution', { state: { response: res, assert } });
+            navigate('/project/execution', { state: { response: res.data, assert } });
         });
     }
 
@@ -82,7 +88,7 @@ const Request = () => {
                 </Row>
                 <Row flex={6} align={'flex-start'}>
                     <Tabs align={'left'}>
-                        <DataTable label="Params" data={queryParams} setData={setQueryParams}
+                        <DataTable label="Params" data={queryParameters} setData={setQueryParameters}
                             headers={[
                                 { key: "key", label: "Key" },
                                 { key: "value", label: "Value" },
@@ -108,9 +114,9 @@ const Request = () => {
                         <DataTable label="Assert" data={assert} setData={setAssert}
                             headers={[
                                 { key: "path", label: "Path" },
-                                { key: "operation", label: "Operation" },
+                                { key: "operation", label: "Operation", options: AssertOperators },
                                 { key: "expected", label: "Expected" },
-                                { key: "dataType", label: "Data Type" }
+                                { key: "dataType", label: "Data Type", options: DataType }
                             ]} />
                     </Tabs>
                 </Row>

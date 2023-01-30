@@ -1,5 +1,6 @@
 import styled from 'styled-components'
-import { FaUserAlt } from 'react-icons/fa';
+
+import Dropdown from '../Dropdown/Dropdown';
 
 const darkGrey = '#525252';
 const grey = '#999999';
@@ -82,5 +83,14 @@ export const TableDataInput = styled.input`
         border: 1px solid ${grey};
         outline: none;
         background-color: white;
+    }
+`
+
+export const TableDropdown = styled(Dropdown)`
+    margin: 0px;
+
+    & > select {
+        border: 0px;
+        padding: 3px;
     }
 `

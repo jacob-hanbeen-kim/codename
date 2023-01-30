@@ -41,7 +41,6 @@ const DataTable = ({ headers, data, setData }) => {
         if (placeHolder) {
             return [...data, placeHolder];
         }
-
         return data;
     }
 
@@ -55,7 +54,7 @@ const DataTable = ({ headers, data, setData }) => {
 
     return (
         <Contaiiner>
-            <Table headers={headers} data={getData()} hasPlaceHolder={true} onChange={handleDataChange} />
+            <Table headers={headers} data={getData()} onChange={handleDataChange} />
         </Contaiiner>
     )
 }

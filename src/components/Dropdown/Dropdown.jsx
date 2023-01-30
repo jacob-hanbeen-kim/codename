@@ -9,7 +9,7 @@ const Dropdown = (props) => {
     const [value, setValue] = useState('');
     const [dropdownOption, setOption] = useState([]);
 
-    const { options, placeholder, defaultValue, onChange, ...selectProps } = props;
+    const { options, placeholder, defaultValue, onChange, className, ...selectProps } = props;
 
     const handleOnChange = (event) => {
         setValue(event.target.value);
@@ -36,7 +36,7 @@ const Dropdown = (props) => {
     }, [options])
 
     return (
-        <Container>
+        <Container className={className}>
             <Select {...selectProps} value={value} onChange={handleOnChange}>
                 <Option value='' hidden={true}>{placeholder}</Option>
                 {
