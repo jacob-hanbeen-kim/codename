@@ -17,19 +17,26 @@ const Table = ({ headers, data, onChange }) => {
         return data.map((row, rowIdx) => {
             return (<TableRow key={rowIdx}>
                 {headers.map((col, colIdx) => {
+                    let placeholder = '';
+                    let value = row[col.key];
+                    if (rowIdx === data.length - 1) {
+                        placeholder = row[col.key];
+                        value = '';
+                    }
+
                     return (<TableData key={colIdx}>
                         {col.options ?
                             <TableDropdown
                                 name="method"
                                 required={false}
                                 options={col.options}
-                                placeholder={row[col.key]}
+                                placeholder={placeholder}
                                 onChange={(e) => onChange(e, rowIdx)}
                             /> :
                             <TableDataInput
                                 id={col.key}
-                                placeholder={row[col.key]}
-                                value={''}
+                                placeholder={placeholder}
+                                value={value}
                                 onChange={(e) => onChange(e, rowIdx)}
                             />
                         }
