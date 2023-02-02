@@ -83,7 +83,7 @@ const Request = () => {
                         />
                     </Col>
                     <Col flex={8}>
-                        <Url type='text' name='url' onChange={(e) => setUrl(e.target.value)} placeholder='Enter request URL' />
+                        <Url type='text' name='url' onChange={(e) => setUrl(e.target.value)} placeholder='Enter request URL' required />
                     </Col>
                 </Row>
                 <Row flex={6} align={'flex-start'}>
