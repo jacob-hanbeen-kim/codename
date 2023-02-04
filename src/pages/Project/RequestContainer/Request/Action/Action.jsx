@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Dropdown from '../../../../components/Dropdown/Dropdown';
+import Dropdown from '../../../../../components/Dropdown/Dropdown';
 import {
     Container,
     Wrapper,
@@ -22,8 +22,6 @@ const Action = () => {
                 url: "https://localhost:3000/staging"
             }
         })
-
-        console.log(Object.keys(environments));
         setLoading(false);
     }, [])
 
@@ -37,8 +35,8 @@ const Action = () => {
                             name="env"
                             required={true}
                             options={Object.keys(environments)}
-                            defaultValue={'qa'}
                             onChange={(e) => { console.log(e.target.value) }}
+                            value={'qa'}
                         />
                     </Wrapper>
                     <Wrapper>

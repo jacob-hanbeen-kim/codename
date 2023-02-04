@@ -4,33 +4,14 @@ export const Container = styled.div`
     height: 100%;
 `
 
-export const TabContainer = styled.div`
-    /* height: 10%; */
-    padding-top: 10px;
-    padding-left: 5px;
-`
-
-export const Tab = styled.button`
-    height: 30px;
-    min-width: 200px;
-
-    border: 1px solid #252525;
-
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
-`
-
 export const Form = styled.form`
     display: flex;
     flex-direction: column;
 
     flex-direction: center;
     justify-content: flex-start;
-    border-top: 1px solid black;
 
-    height: 95%;
+    height: 100%;
 `
 
 export const Row = styled.div`

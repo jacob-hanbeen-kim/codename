@@ -1,30 +1,40 @@
 import React, { useEffect } from 'react'
+// Redux
+import { connect } from 'react-redux';
+import { fetchTests, fetchTest } from '../../../actions';
 
+// Style
 import {
     Container,
-    Wrapper
+    Wrapper,
+    ButtonContainer,
+    Method,
+    Title,
 } from './Sidebar.styled';
 
+// Components
 import Toolbar from './Toolbar/Toolbar';
-
-import { connect } from 'react-redux';
-import { fetchUser } from '../../../actions';
 
 const Sidebar = (props) => {
 
     useEffect(() => {
-        props.fetchUser(1);
+        props.fetchTests();
     }, [])
+
+    const handleClick = (id, e) => {
+        props.fetchTest(id);
+    }
 
     return (
         <Container>
             <Wrapper>
                 <Toolbar />
-                {props.users.map((user, idx) => {
+                {props.collection.map((test) => {
                     return (
-                        <div key={idx}>
-                            {user.name}
-                        </div>
+                        <ButtonContainer key={test.id} onClick={e => handleClick(test.id, e)}>
+                            <Method method={test.method}>{test.method}</Method>
+                            <Title>{test.title}</Title>
+                        </ButtonContainer>
                     )
                 })}
             </Wrapper>
@@ -33,7 +43,7 @@ const Sidebar = (props) => {
 }
 
 const mapStateToProps = (state) => {
-    return { users: state.users }
+    return { collection: state.collection }
 }
 
-export default connect(mapStateToProps, { fetchUser })(Sidebar);
+export default connect(mapStateToProps, { fetchTests, fetchTest })(Sidebar);

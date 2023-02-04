@@ -1,11 +1,10 @@
 import { combineReducers } from "redux";
-import usersReducer from "./usersReducer";
-import collectionsReducer from "./collectionsReducer";
-import testsReducer from "./testsReducer";
+import userReducer from "./userReducer";
+import { activeTestReducer, openedTestReducer, allTestReducer } from "./testReducer";
 
 export default combineReducers({
-    collections: collectionsReducer,
-    opened: testsReducer,
-    active: 'id',
-    users: usersReducer
+    collection: allTestReducer,
+    opened: openedTestReducer,
+    active: activeTestReducer,
+    user: userReducer
 })

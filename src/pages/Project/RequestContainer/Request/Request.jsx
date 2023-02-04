@@ -1,10 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { apiService } from '../../../services/api';
+
+import { apiService } from '../../../../services/api';
 import {
     Container,
-    TabContainer,
-    Tab,
     Form,
     Row,
     Col,
@@ -12,8 +11,8 @@ import {
     HorizontalLine
 } from './Request.styled';
 
-import Dropdown from '../../../components/Dropdown/Dropdown';
-import Tabs from '../../../components/Tabs/Tabs';
+import Dropdown from '../../../../components/Dropdown/Dropdown';
+import Tabs from '../../../../components/Tabs/Tabs';
 import DataTable from './DataTable/DataTable';
 import Action from './Action/Action';
 import RequestBody from './RequestBody/RequestBody';
@@ -27,12 +26,12 @@ const httpRequest = [
     { label: 'DELETE', value: 'delete' }
 ]
 
-const Request = () => {
+const Request = ({ data }) => {
 
     let navigate = useNavigate();
 
     let [method, setMethod] = useState('get');
-    let [url, setUrl] = useState(null);
+    let [url, setUrl] = useState('');
     let [queryParameters, setQueryParameters] = useState([]);
     let [headers, setHeaders] = useState([]);
     let [requestBody, setRequestBody] = useState(null);
@@ -41,16 +40,6 @@ const Request = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
-        // console.log('body', {
-        //     testData,
-        //     assert,
-        //     url,
-        //     headers,
-        //     method,
-        //     requestBody,
-        //     queryParameters
-        // });
 
         apiService.sendRequest({
             url,
@@ -64,13 +53,17 @@ const Request = () => {
         });
     }
 
+    useEffect(() => {
+        if (data) {
+            setMethod(data.method?.toLowerCase());
+            setUrl(data.url);
+            setHeaders(data.headers ? data.headers : []);
+            setRequestBody(data.body ? data.body : []);
+        }
+    }, [data])
+
     return (
         <Container>
-            <TabContainer>
-                <Tab>
-                    sample test
-                </Tab>
-            </TabContainer>
             <Form onSubmit={handleSubmit}>
                 <Row flex={1}>
                     <Col flex={1}>
@@ -78,12 +71,12 @@ const Request = () => {
                             name="method"
                             required={true}
                             options={httpRequest}
-                            defaultValue={'get'}
                             onChange={(e) => setMethod(e.target.value)}
+                            value={method}
                         />
                     </Col>
                     <Col flex={8}>
-                        <Url type='text' name='url' onChange={(e) => setUrl(e.target.value)} placeholder='Enter request URL' required />
+                        <Url type='text' name='url' onChange={(e) => setUrl(e.target.value)} placeholder='Enter request URL' value={url} required />
                     </Col>
                 </Row>
                 <Row flex={6} align={'flex-start'}>
@@ -131,4 +124,4 @@ const Request = () => {
     )
 }
 
-export default Request
+export default Request;

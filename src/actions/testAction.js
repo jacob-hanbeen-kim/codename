@@ -1,0 +1,82 @@
+import { v4 as uuidv4 } from 'uuid';
+
+let tests = [
+    {
+        id: '1',
+        title: '/api/users',
+        method: 'get',
+        url: 'https://localhost:3000/api/users',
+        headers: null,
+        body: null,
+        dir: ''
+    },
+    {
+        id: '2',
+        title: '/api/users',
+        method: 'post',
+        url: 'https://localhost:3000/api/users',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: {
+            firstName: "Jacob",
+            lastName: "Kim"
+        },
+        dir: 'users'
+    },
+    {
+        id: '3',
+        title: '/api/tests',
+        method: 'get',
+        url: 'https://localhost:3000/api/tests',
+        headers: null,
+        body: null,
+        dir: 'tests'
+    },
+    {
+        id: '4',
+        title: '/api/tests',
+        method: 'put',
+        url: 'https://localhost:3000/api/tests/1',
+        headers: null,
+        body: {
+            name: "Sample Test"
+        },
+        dir: ''
+    }
+]
+
+/**
+ * TODO: replace with actual api call like above example
+ * @param testId 
+ * @returns 
+ */
+export const fetchTest = (testId) => {
+    return {
+        type: 'FETCH_TEST',
+        payload: tests.find((test) => { return test.id === testId })
+    }
+}
+
+export const fetchTests = () => {
+    return {
+        type: 'FETCH_TESTS',
+        payload: tests
+    }
+}
+
+export const createTemporaryTest = () => {
+
+    return {
+        type: 'CREATE_TEMP_TEST',
+        payload: {
+            id: uuidv4(),
+            title: 'Untitled Test',
+            method: 'get',
+            url: '',
+            headers: null,
+            body: null,
+            dir: ''
+        }
+    }
+}

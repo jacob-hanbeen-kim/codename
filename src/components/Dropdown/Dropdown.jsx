@@ -6,10 +6,10 @@ import {
 import { useEffect, useState } from 'react';
 
 const Dropdown = (props) => {
-    const [value, setValue] = useState('');
+    const [val, setValue] = useState('');
     const [dropdownOption, setOption] = useState([]);
 
-    const { options, placeholder, defaultValue, onChange, className, ...selectProps } = props;
+    const { options, placeholder, value, onChange, className, ...selectProps } = props;
 
     const handleOnChange = (event) => {
         setValue(event.target.value);
@@ -17,8 +17,8 @@ const Dropdown = (props) => {
     }
 
     useEffect(() => {
-        if (defaultValue) setValue(defaultValue);
-    }, [])
+        if (value) setValue(value);
+    }, [value])
 
     useEffect(() => {
         if (options && options[0] !== null && typeof options[0] !== 'object') {
@@ -37,7 +37,7 @@ const Dropdown = (props) => {
 
     return (
         <Container className={className}>
-            <Select {...selectProps} value={value} onChange={handleOnChange}>
+            <Select {...selectProps} value={val} onChange={handleOnChange}>
                 <Option value='' hidden={true}>{placeholder}</Option>
                 {
                     dropdownOption && dropdownOption.map((option, i) =>
