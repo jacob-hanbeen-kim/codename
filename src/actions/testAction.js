@@ -80,3 +80,10 @@ export const createTemporaryTest = () => {
         }
     }
 }
+
+export const changeActiveTest = (testId) => {
+    return {
+        type: 'SET_ACTIVE_TEST',
+        payload: { id: testId }
+    };
+}

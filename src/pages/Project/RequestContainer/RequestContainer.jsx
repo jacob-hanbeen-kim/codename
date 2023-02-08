@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { createTemporaryTest, fetchTest } from '../../../actions';
+import { createTemporaryTest, changeActiveTest } from '../../../actions';
 
 import {
     Container,
@@ -19,7 +19,7 @@ const RequestContainer = (props) => {
         if (isNew) {
             props.createTemporaryTest();
         } else {
-            props.fetchTest(id);
+            props.changeActiveTest(id);
         }
     }
 
@@ -56,4 +56,4 @@ const mapStateToProps = (state) => {
     return { opened: state.opened, active: state.active }
 }
 
-export default connect(mapStateToProps, { fetchTest, createTemporaryTest })(RequestContainer);
+export default connect(mapStateToProps, { changeActiveTest, createTemporaryTest })(RequestContainer);

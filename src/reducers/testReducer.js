@@ -4,6 +4,8 @@ export const activeTestReducer = (state = 0, action) => {
             return action.payload.id;
         case 'CREATE_TEMP_TEST':
             return action.payload.id;
+        case 'SET_ACTIVE_TEST':
+            return action.payload.id;
         default:
             return state
     }

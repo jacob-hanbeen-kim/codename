@@ -15,11 +15,12 @@
 // }
 
 import { fetchUser } from "./userAction"
-import { fetchTest, fetchTests, createTemporaryTest } from "./testAction"
+import { fetchTest, fetchTests, createTemporaryTest, changeActiveTest } from "./testAction"
 
 export {
     fetchUser,
     fetchTest,
     fetchTests,
-    createTemporaryTest
+    createTemporaryTest,
+    changeActiveTest
 }
