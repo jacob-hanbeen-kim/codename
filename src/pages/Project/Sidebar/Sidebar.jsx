@@ -1,49 +1,35 @@
-import React, { useEffect } from 'react'
-// Redux
-import { connect } from 'react-redux';
-import { fetchTests, fetchTest } from '../../../actions';
-
 // Style
 import {
     Container,
-    Wrapper,
-    ButtonContainer,
-    Method,
-    Title,
+    Wrapper
 } from './Sidebar.styled';
 
 // Components
 import Toolbar from './Toolbar/Toolbar';
+import RequestSidebar from './RequestSidebar/RequestSidebar';
+import ExecutionSidebar from './ExecutionSidebar/ExecutionSidebar';
+import { useEffect, useState } from 'react';
 
 const Sidebar = (props) => {
 
-    useEffect(() => {
-        props.fetchTests();
-    }, [])
+    const [path, setPath] = useState();
 
-    const handleClick = (id, e) => {
-        props.fetchTest(id);
+    const getSidebarItem = () => {
+        switch (path) {
+            case 'request': return <RequestSidebar />
+            case 'execution': return <ExecutionSidebar />
+            default: return <RequestSidebar />
+        }
     }
 
     return (
         <Container>
             <Wrapper>
-                <Toolbar />
-                {props.collection.map((test) => {
-                    return (
-                        <ButtonContainer key={test.id} onClick={e => handleClick(test.id, e)}>
-                            <Method method={test.method}>{test.method}</Method>
-                            <Title>{test.title}</Title>
-                        </ButtonContainer>
-                    )
-                })}
+                <Toolbar onClick={setPath} />
+                {getSidebarItem()}
             </Wrapper>
         </Container>
     )
 }
 
-const mapStateToProps = (state) => {
-    return { collection: state.collection }
-}
-
-export default connect(mapStateToProps, { fetchTests, fetchTest })(Sidebar);
+export default Sidebar;

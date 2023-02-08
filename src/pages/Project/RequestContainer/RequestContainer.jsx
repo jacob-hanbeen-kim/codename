@@ -12,9 +12,7 @@ import Request from './Request/Request';
 
 const RequestContainer = (props) => {
 
-    // #TODO: fix to change new tab on click.
-    // #TODO 2: Save new test
-    // #TODO 3: think of way to replace fetchTest ? (api vs fetch from state)
+    // #TODO 1: Save new test
     const handleTabClick = (id, isNew) => {
         if (isNew) {
             props.createTemporaryTest();

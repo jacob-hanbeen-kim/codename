@@ -33,7 +33,7 @@ const Execution = () => {
     }
 
     useEffect(() => {
-        console.log(location.state)
+        // #TODO: change this to fetch using redux --> create new execution and display execution history
         if (location.state) {
             setResponse(location.state.response);
 
@@ -63,7 +63,7 @@ const Execution = () => {
                     </TestCaseContainer>
                 </TestContainer>
                 <ResponseContainer>
-                    <ResponseTextArea value={JSON.stringify(response, undefined, 4)} readonly />
+                    <ResponseTextArea value={JSON.stringify(response, undefined, 4)} onChange={(e) => console.log(e)} readonly />
                 </ResponseContainer>
             </Wrapper>
         </Container>

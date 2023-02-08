@@ -16,11 +16,16 @@
 
 import { fetchUser } from "./userAction"
 import { fetchTest, fetchTests, createTemporaryTest, changeActiveTest } from "./testAction"
+import { fetchExecutionById, fetchAllExecutions } from './executionActioin'
 
 export {
     fetchUser,
+
     fetchTest,
     fetchTests,
     createTemporaryTest,
-    changeActiveTest
+    changeActiveTest,
+
+    fetchExecutionById,
+    fetchAllExecutions
 }
