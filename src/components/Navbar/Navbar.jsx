@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Logo from '../Logo/Logo'
+import Logo from '@codename/components/Logo/Logo'
 import {
     Container,
     Topbar,

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 // Redux
 import { connect } from 'react-redux';
-import { fetchAllExecutions, fetchExecutionById } from '../../../../actions';
+import { fetchAllExecutions, fetchExecutionById } from '@codename/actions';
 
 // Styles
 import {

@@ -4,7 +4,7 @@ import {
 } from './DataTable.styled';
 
 import { useEffect, useState } from 'react';
-import Table from '../../../../../components/Table/Table';
+import Table from '@codename/components/Table/Table';
 
 const DataTable = ({ headers, data, setData }) => {
 

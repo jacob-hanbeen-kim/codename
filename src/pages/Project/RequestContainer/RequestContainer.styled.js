@@ -32,6 +32,10 @@ export const Tab = styled.button`
     cursor: pointer;
 `
 
+export const closeTabButton = styled.button`
+    
+`
+
 export const FormContainer = styled.div`
     height: 95%;
 `

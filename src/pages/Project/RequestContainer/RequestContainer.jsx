@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { createTemporaryTest, changeActiveTest } from '../../../actions';
+import { createTemporaryTest, changeActiveTest } from '@codename/actions';
 
 import {
     Container,

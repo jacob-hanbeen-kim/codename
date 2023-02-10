@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { apiService } from '../../../../services/api';
+import { apiService } from '@codename/services/api';
 import {
     Container,
     Form,
@@ -11,8 +11,8 @@ import {
     HorizontalLine
 } from './Request.styled';
 
-import Dropdown from '../../../../components/Dropdown/Dropdown';
-import Tabs from '../../../../components/Tabs/Tabs';
+import Dropdown from '@codename/components/Dropdown/Dropdown';
+import Tabs from '@codename/components/Tabs/Tabs';
 import DataTable from './DataTable/DataTable';
 import Action from './Action/Action';
 import RequestBody from './RequestBody/RequestBody';

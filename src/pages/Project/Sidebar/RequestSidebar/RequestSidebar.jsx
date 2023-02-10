@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 // Redux
 import { connect } from 'react-redux';
-import { fetchTests, fetchTest } from '../../../../actions';
+import { fetchTests, fetchTest } from '@codename/actions';
 
 // Styles
 import {

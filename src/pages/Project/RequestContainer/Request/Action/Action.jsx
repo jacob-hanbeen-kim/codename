@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Dropdown from '../../../../../components/Dropdown/Dropdown';
+import Dropdown from '@codename/components/Dropdown/Dropdown';
 import {
     Container,
     Wrapper,

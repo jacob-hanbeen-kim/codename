@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import Dropdown from '../Dropdown/Dropdown';
+import Dropdown from '@codename/components/Dropdown/Dropdown';
 
 const darkGrey = '#525252';
 const grey = '#999999';

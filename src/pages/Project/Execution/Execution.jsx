@@ -14,8 +14,8 @@ import {
 
 import { useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react';
-import Spinner from '../../../components/Spinner/Spinner';
-import { runTests } from '../../../businessLogic/assert';
+import Spinner from '@codename/components/Spinner/Spinner';
+import { runTests } from '@codename/businessLogic/assert';
 
 const Execution = () => {
 
