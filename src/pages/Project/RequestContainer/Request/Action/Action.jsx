@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import Dropdown from '@codename/components/Dropdown/Dropdown';
 import {
     Container,
@@ -6,7 +7,7 @@ import {
     Button
 } from './Action.styled';
 
-const Action = () => {
+const Action = ({ onSave }) => {
 
     const [isLoading, setLoading] = useState(false);
     const [environments, setEnvironments] = useState({});
@@ -40,7 +41,7 @@ const Action = () => {
                         />
                     </Wrapper>
                     <Wrapper>
-                        <Button type='button'>Save</Button>
+                        <Button type='button' onClick={onSave}>Save</Button>
                         <Button type='submit'>Run Test</Button>
                     </Wrapper>
                 </>
@@ -50,4 +51,4 @@ const Action = () => {
     )
 }
 
-export default Action
+export default Action;

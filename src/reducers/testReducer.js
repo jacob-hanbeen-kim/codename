@@ -25,7 +25,7 @@ export const openedTestReducer = (state = {}, action) => {
 export const allTestReducer = (state = [], action) => {
     switch (action.type) {
         case 'FETCH_TESTS':
-            return action.payload;
+            return [...action.payload];
         default:
             return state
     }

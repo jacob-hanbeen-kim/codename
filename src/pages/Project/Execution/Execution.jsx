@@ -1,3 +1,6 @@
+import { connect } from 'react-redux';
+import { createExecutionHistory } from '@codename/actions';
+
 import {
     Container,
     Wrapper,
@@ -17,7 +20,7 @@ import { useEffect, useState } from 'react';
 import Spinner from '@codename/components/Spinner/Spinner';
 import { runTests } from '@codename/businessLogic/assert';
 
-const Execution = () => {
+const Execution = (props) => {
 
     const location = useLocation();
     const [testResult, setTestResult] = useState([]);
@@ -35,12 +38,22 @@ const Execution = () => {
     useEffect(() => {
         // #TODO: change this to fetch using redux --> create new execution and display execution history
         if (location.state) {
+            console.log('state: ', location.state)
             setResponse(location.state.response);
 
             let results = runTests(location.state.response, location.state.assert);
             setTestResult(results);
+            createExecutionHistory(location.state.title, location.state.id, location.state.response, results);
         }
     }, [location.state])
+
+    useEffect(() => {
+        if (Object.keys(props.openedExecution).length > 0) {
+            console.log('props: ', props.openedExecution)
+            setResponse(props.openedExecution.response);
+            setTestResult(props.openedExecution.results);
+        }
+    }, [props.openedExecution])
 
     return (
         <Container>
@@ -49,7 +62,6 @@ const Execution = () => {
                     <h3>Test Execution Result</h3>
                     <TestCaseContainer>
                         {testResult.map((result) => {
-                            console.log(result)
                             return (
                                 <TestCase key={result.title}>
                                     <StatusContainer>{getStatus(result.status)}</StatusContainer>
@@ -70,4 +82,8 @@ const Execution = () => {
     )
 }
 
-export default Execution
+const mapStateToProps = (state) => {
+    return { openedExecution: state.openedExecution }
+}
+
+export default connect(mapStateToProps, { createExecutionHistory })(Execution);

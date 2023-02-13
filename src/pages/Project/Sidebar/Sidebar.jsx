@@ -9,24 +9,31 @@ import Toolbar from './Toolbar/Toolbar';
 import RequestSidebar from './RequestSidebar/RequestSidebar';
 import ExecutionSidebar from './ExecutionSidebar/ExecutionSidebar';
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
-const Sidebar = (props) => {
+const Sidebar = () => {
 
-    const [path, setPath] = useState();
+    const location = useLocation();
+    const [display, setDisplay] = useState(<RequestSidebar />);
 
     const getSidebarItem = () => {
-        switch (path) {
-            case 'request': return <RequestSidebar />
-            case 'execution': return <ExecutionSidebar />
+        switch (location.pathname) {
+            case '/project/request': return <RequestSidebar />
+            case '/project/execution': return <ExecutionSidebar />
             default: return <RequestSidebar />
         }
     }
 
+    useEffect(() => {
+        console.log(location.pathname);
+        setDisplay(getSidebarItem());
+    }, [location.pathname])
+
     return (
         <Container>
             <Wrapper>
-                <Toolbar onClick={setPath} />
-                {getSidebarItem()}
+                <Toolbar />
+                {display}
             </Wrapper>
         </Container>
     )

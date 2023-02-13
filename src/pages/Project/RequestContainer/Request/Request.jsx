@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { connect } from 'react-redux';
+import { saveTest } from '@codename/actions';
+
 import { apiService } from '@codename/services/api';
 import {
     Container,
@@ -26,7 +29,7 @@ const httpRequest = [
     { label: 'DELETE', value: 'delete' }
 ]
 
-const Request = ({ data }) => {
+const Request = ({ data, saveNewTest }) => {
 
     let navigate = useNavigate();
 
@@ -51,8 +54,22 @@ const Request = ({ data }) => {
             console.log(res);
 
             // #TODO: change this to use redux --> save to execution history
-            navigate('/project/execution', { state: { response: res.data, assert } });
+            console.log(data);
+            navigate('/project/execution', { state: { title: data.title, id: data.id, response: res.data, assert } });
         });
+    }
+
+    const handleSave = () => {
+        console.log('here');
+        saveNewTest({
+            id: data.id,
+            title: data.title,
+            method: method,
+            url: url,
+            headers: headers,
+            body: requestBody,
+            dir: ''
+        })
     }
 
     useEffect(() => {
@@ -118,7 +135,7 @@ const Request = ({ data }) => {
                 <HorizontalLine />
                 <Row flex={1}>
                     <Col flex={1}>
-                        <Action />
+                        <Action onSave={handleSave} />
                     </Col>
                 </Row>
             </Form>
@@ -126,4 +143,4 @@ const Request = ({ data }) => {
     )
 }
 
-export default Request;
+export default connect(null, { saveNewTest: saveTest })(Request);

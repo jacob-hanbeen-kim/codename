@@ -5,17 +5,17 @@ import {
     StyledNavLink
 } from './Toolbar.styled'
 
-const Toolbar = ({ onClick }) => {
+const Toolbar = () => {
 
     return (
         <Container>
             <NavContainer>
                 <Nav>
-                    <StyledNavLink to="request" onClick={() => onClick('request')}>R</StyledNavLink>
-                    <StyledNavLink to="execution" onClick={() => onClick('execution')}>E</StyledNavLink>
+                    <StyledNavLink to="request">R</StyledNavLink>
+                    <StyledNavLink to="execution">E</StyledNavLink>
                 </Nav>
             </NavContainer>
-        </Container>
+        </Container >
     )
 }
 

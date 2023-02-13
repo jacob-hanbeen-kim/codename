@@ -9,7 +9,7 @@ export default combineReducers({
     opened: openedTestReducer,
     active: activeTestReducer,
 
-    openedExecutioin: openedExecutionReducer,
+    openedExecution: openedExecutionReducer,
     executions: allExecutionReducer,
 
     user: userReducer

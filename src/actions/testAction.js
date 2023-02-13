@@ -65,6 +65,24 @@ export const fetchTests = () => {
     }
 }
 
+export const saveTest = (data) => {
+
+    const foundIndex = tests.findIndex((exec) => { return exec.id === data.id });
+
+    if (foundIndex >= 0) {
+        tests[foundIndex] = data;
+    } else {
+        tests.push(data);
+    }
+
+    console.log(tests);
+
+    return {
+        type: 'FETCH_TESTS',
+        payload: tests
+    }
+}
+
 export const createTemporaryTest = () => {
 
     return {
