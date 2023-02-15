@@ -14,6 +14,7 @@ let executionHistory = [
 ]
 
 export const fetchExecutionById = (testId) => {
+    console.log(testId);
     return {
         type: 'FETCH_EXECUTION',
         payload: executionHistory.find((exec) => { return exec.id === testId })
@@ -41,7 +42,7 @@ export const createExecutionHistory = (title, id, response, results) => {
         }
     }
 
-    executionHistory.push({
+    executionHistory.unshift({
         id,
         title,
         response,

@@ -78,8 +78,11 @@ export const saveTest = (data) => {
     console.log(tests);
 
     return {
-        type: 'FETCH_TESTS',
-        payload: tests
+        type: 'SAVE_TEST',
+        payload: {
+            tests,
+            savedTest: data
+        }
     }
 }
 

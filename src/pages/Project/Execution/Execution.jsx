@@ -36,6 +36,14 @@ const Execution = (props) => {
     }
 
     useEffect(() => {
+        if (Object.keys(props.openedExecution).length > 0) {
+            console.log('props: ', props.openedExecution)
+            setResponse(props.openedExecution.response);
+            setTestResult(props.openedExecution.results);
+        }
+    }, [props.openedExecution])
+
+    useEffect(() => {
         // #TODO: change this to fetch using redux --> create new execution and display execution history
         if (location.state) {
             console.log('state: ', location.state)
@@ -46,14 +54,6 @@ const Execution = (props) => {
             createExecutionHistory(location.state.title, location.state.id, location.state.response, results);
         }
     }, [location.state])
-
-    useEffect(() => {
-        if (Object.keys(props.openedExecution).length > 0) {
-            console.log('props: ', props.openedExecution)
-            setResponse(props.openedExecution.response);
-            setTestResult(props.openedExecution.results);
-        }
-    }, [props.openedExecution])
 
     return (
         <Container>

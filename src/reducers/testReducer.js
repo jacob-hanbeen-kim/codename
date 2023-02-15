@@ -17,6 +17,8 @@ export const openedTestReducer = (state = {}, action) => {
             return { ...state, [action.payload.id]: action.payload };
         case 'CREATE_TEMP_TEST':
             return { ...state, [action.payload.id]: action.payload };
+        case 'SAVE_TEST':
+            return { ...state, [action.payload.savedTest.id]: action.payload.savedTest };
         default:
             return state
     }
@@ -26,6 +28,8 @@ export const allTestReducer = (state = [], action) => {
     switch (action.type) {
         case 'FETCH_TESTS':
             return [...action.payload];
+        case 'SAVE_TEST':
+            return [...action.payload.tests];
         default:
             return state
     }
