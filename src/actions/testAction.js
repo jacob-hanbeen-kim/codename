@@ -86,6 +86,7 @@ export const saveTest = (data) => {
     }
 }
 
+
 export const createTemporaryTest = () => {
 
     return {
@@ -107,4 +108,13 @@ export const changeActiveTest = (testId) => {
         type: 'SET_ACTIVE_TEST',
         payload: { id: testId }
     };
+}
+
+export const closeTest = (testId) => {
+    return {
+        type: 'CLOSE_TEST',
+        payload: {
+            id: testId
+        }
+    }
 }

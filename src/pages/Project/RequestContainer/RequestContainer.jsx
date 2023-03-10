@@ -1,10 +1,13 @@
 import { connect } from 'react-redux';
-import { createTemporaryTest, changeActiveTest } from '@codename/actions';
+import { createTemporaryTest, changeActiveTest, closeTest } from '@codename/actions';
 
 import {
     Container,
+    PlusIcon,
     TabContainer,
     Tab,
+    TabTitle,
+    TabCloseButton,
     FormContainer
 } from './RequestContainer.styled';
 
@@ -21,15 +24,20 @@ const RequestContainer = (props) => {
         }
     }
 
+    const handleTabClose = (id) => {
+        props.closeTest(id);
+    }
+
     const getTab = () => {
         let tabs = Object.keys(props.opened).map((id) => {
             return (<Tab key={id} isActive={props.active === id} onClick={() => handleTabClick(id, false)}>
-                {props.opened[id].title}
+                <TabTitle>{props.opened[id].title}</TabTitle>
+                <TabCloseButton onClick={() => handleTabClose(id)} />
             </Tab>)
         })
 
-        tabs.push(<Tab key={'CreateNew'} isActive={false} onClick={() => handleTabClick(null, true)}>
-            {'+ Create New Test'}
+        tabs.push(<Tab key={'CreateNew'} isActive={false} isCreateNew={true} onClick={() => handleTabClick(null, true)}>
+            <PlusIcon />
         </Tab>)
 
         return tabs;
@@ -54,4 +62,4 @@ const mapStateToProps = (state) => {
     return { opened: state.opened, active: state.active }
 }
 
-export default connect(mapStateToProps, { changeActiveTest, createTemporaryTest })(RequestContainer);
+export default connect(mapStateToProps, { changeActiveTest, createTemporaryTest, closeTest })(RequestContainer);

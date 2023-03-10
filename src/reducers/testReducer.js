@@ -19,6 +19,9 @@ export const openedTestReducer = (state = {}, action) => {
             return { ...state, [action.payload.id]: action.payload };
         case 'SAVE_TEST':
             return { ...state, [action.payload.savedTest.id]: action.payload.savedTest };
+        case 'CLOSE_TEST':
+            const { [action.payload.id]: removedProp, ...newState } = state;
+            return newState;
         default:
             return state
     }

@@ -7,8 +7,8 @@ let executionHistory = [
             'name': 'Jacob'
         },
         results: [
-            { title: '$.id to equal 1', status: 'pass' },
-            { title: '$.name to equal Daniel', status: 'fail' }
+            { title: '$.id to equal 1', status: 'pass', detail: '' },
+            { title: '$.name to equal Daniel', status: 'fail', detail: '' }
         ]
     }
 ]

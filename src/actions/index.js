@@ -15,7 +15,7 @@
 // }
 
 import { fetchUser } from "./userAction"
-import { fetchTest, fetchTests, saveTest, createTemporaryTest, changeActiveTest } from "./testAction"
+import { fetchTest, fetchTests, saveTest, createTemporaryTest, changeActiveTest, closeTest } from "./testAction"
 import { fetchExecutionById, fetchAllExecutions, createExecutionHistory } from './executionActioin'
 
 export {
@@ -26,6 +26,7 @@ export {
     saveTest,
     createTemporaryTest,
     changeActiveTest,
+    closeTest,
 
     fetchExecutionById,
     fetchAllExecutions,
